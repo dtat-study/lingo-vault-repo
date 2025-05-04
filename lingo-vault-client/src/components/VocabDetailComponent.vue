@@ -15,7 +15,7 @@
         <div class="card-text pt-3 mx-0 row">
           <ol>
             <li v-for="vocab in props.detailVocabList" class="list-group-item d-flex align-items-start row border-bottom py-2"
-            :class="'level-'+vocab.priority">
+            :class="'level-'+vocab.level">
               <div class="col-11">
                 <div class="fw-bold"><input type="text" :value="vocab.meaning" :disabled="!isEditable"></div>
                 <div><input type="text" :value="vocab.example" :disabled="!isEditable"></div>

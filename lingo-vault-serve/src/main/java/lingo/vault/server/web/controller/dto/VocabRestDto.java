@@ -11,7 +11,7 @@ public class VocabRestDto {
     private String word;
     private String meaning;
     private String notice;
-    private String priority;
+    private String level;
     private String example;
     private int status;
     private String classification;

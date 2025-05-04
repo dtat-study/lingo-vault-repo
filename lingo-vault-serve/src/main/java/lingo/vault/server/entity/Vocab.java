@@ -37,7 +37,7 @@ public class Vocab {
     private Date updatedAt;
 
     @Column
-    private String priority;
+    private String level;
 
     @Column
     private int status;

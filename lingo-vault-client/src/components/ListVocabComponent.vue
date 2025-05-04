@@ -7,7 +7,7 @@
           <select class="form-select" @change="sortSearchResults()" v-model="sortRule">
             <option value="word">Alphabet</option>
             <option value="createdAt">Added Order</option>
-            <option value="priority">Learning Progress</option>
+            <option value="level">Learning Progress</option>
           </select>
         </div>
         <div class="col-6">
@@ -21,7 +21,7 @@
     </div>
     <div class="vocab-show-result">
       <ol>
-        <li v-for="vocab in searchResults" class="list-group-item d-flex align-items-start row" :class="'level-'+vocab.priority"
+        <li v-for="vocab in searchResults" class="list-group-item d-flex align-items-start row" :class="'level-'+vocab.level"
           @click="seeVocabDetail(vocab.word)">
           <div class="col-11">
             <div class="fw-bold">{{ vocab.word }}</div>
@@ -70,8 +70,8 @@ const sortSearchResults = () => {
       return a.word.localeCompare(b.word);
     } else if (sortRule.value === 'createdAt') {
       return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-    } else if (sortRule.value === 'priority') {
-      return a.priority.localeCompare(b.priority);
+    } else if (sortRule.value === 'level') {
+      return a.level.localeCompare(b.level );
     }
     return 0;
   });
