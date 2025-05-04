@@ -1,0 +1,138 @@
+html{
+    font-size: 14px;
+}
+
+body {
+    background-color: #EAF3F7;
+    overflow: hidden;
+}
+
+.container-fluid {
+    width: 1320px;
+    height: 95vh;
+    margin: 20px calc((100vw - 1320px) /2 );
+    justify-content: space-evenly;
+
+}
+
+.container-fluid>div {
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 20px;
+    padding-bottom: 0;
+    /* height: 100%; */
+}
+
+.add-vocab{
+    height: 25vh;
+    margin-bottom: 20px;
+}
+
+.list-vocab{
+    height: 65vh;
+}
+
+.vocab-show-result{
+    border-top: #b4cffa 0.5px solid;
+    padding-top: 15px;
+}
+
+.vocab-show-result ol{
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding-left: 0px;
+    padding-right: 10px ;
+    justify-content: start;
+}
+
+.vocab-show-result li {
+    width: 48%;
+    border-bottom: #ccc 0.5px solid;
+    padding-bottom: 6px;
+    padding-left: 0;
+}
+.vocab-show-result li:nth-child(odd){
+    
+    margin-right: 5%;
+}
+
+
+.good{
+    color: #30d158;
+}
+.normal{
+    color: #402be0;
+}
+.ng{
+    color: red;
+}
+
+.vocab-detail{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    background-color: rgba(129, 117, 117,0.3) !important;
+    display: flex;
+    justify-content: center;
+    padding: 10vh 0;
+}
+
+.vocab-detail .card{
+    width: 800px !important;
+    height: 60vh;
+}
+
+.card-body>div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-group{
+    height: 50vh;
+    overflow: auto;
+
+}
+
+.duplicated {
+    border-color: red;
+}
+.duplicated-message {
+    color: blue;
+    display: block !important;
+
+}
+
+.duplicated-error-message {
+    color: red;
+    display: block !important;
+}
+*::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: blue;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+  }
+
+  .form-check-inline {
+    padding-left: 30px;
+  }
+
+  .add-button{
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  .add-button-div{
+    padding-top: 10px;
+  }
+
+  .btn-outline-danger:hover, .btn-outline-warning:hover{
+    background: none !important;
+  }
