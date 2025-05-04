@@ -19,6 +19,8 @@ public class VocabService {
     @Transactional
     public boolean addNewVocab(Vocab newVocab) {
         try {
+            String maxId = findMaxVocabId();
+            newVocab.setVocabId(createNewVocabId(maxId));
             entityManager.persist(newVocab);
             UpdateVocabSocket.broadcast("change");
             return true;
@@ -26,6 +28,16 @@ public class VocabService {
             return false;
         }
          }
+
+    private String findMaxVocabId() {
+        String sql = "select max(vocab_id) from vocab";
+        return (String) entityManager.createNativeQuery(sql).getSingleResult();
+    }
+
+    private String createNewVocabId(String maxId) {
+        long maxNumber = Long.parseLong(maxId.substring(3));
+        return String.format("XXX%08d", maxNumber+1);
+    }
 
     public boolean checkExistWord(String word, String meaning) {
         String sql = "select count(*)  from vocab where word =? and meaning =?";

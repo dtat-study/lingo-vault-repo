@@ -12,4 +12,5 @@ lingo-vault-serve/.settings/
 # Ignore toàn bộ thư mục js
 lingo-vault-client/dist
 lingo-vault-client/build
-lingo-vault-client/node-modules
+lingo-vault-client/node_modules/
+lingo-vault-client/package-lock.json

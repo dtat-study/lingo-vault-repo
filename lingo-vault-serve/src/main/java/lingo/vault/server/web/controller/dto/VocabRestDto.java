@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class VocabRestDto {
 
+    private String vocabId;
     private String word;
     private String meaning;
     private String notice;
@@ -14,6 +15,6 @@ public class VocabRestDto {
     private String example;
     private int status;
     private String classification;
-    private Date created_at;
+    private Date createdAt;
 
 }

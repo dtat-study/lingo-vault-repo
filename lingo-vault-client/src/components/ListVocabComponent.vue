@@ -6,7 +6,7 @@
         <div class="col-6">
           <select class="form-select" @change="sortSearchResults()" v-model="sortRule">
             <option value="word">Alphabet</option>
-            <option value="created_at">Added Order</option>
+            <option value="createdAt">Added Order</option>
             <option value="priority">Learning Progress</option>
           </select>
         </div>
@@ -21,7 +21,7 @@
     </div>
     <div class="vocab-show-result">
       <ol>
-        <li v-for="vocab in searchResults" class="list-group-item d-flex align-items-start row" :class="vocab.priority"
+        <li v-for="vocab in searchResults" class="list-group-item d-flex align-items-start row" :class="'level-'+vocab.priority"
           @click="seeVocabDetail(vocab.word)">
           <div class="col-11">
             <div class="fw-bold">{{ vocab.word }}</div>
@@ -38,38 +38,40 @@
 </template>
 
 <script lang="ts" setup>
-import { Vocab } from '../dto/vocab/Vocab';
+
 import { ref, onMounted, defineEmits, watch  } from 'vue';
+import { Vocab } from '../dto/vocab/Vocab';
 
 const props = defineProps<{
-  originalWordList: Vocab[],
+  originalVocabList: Vocab[],
 }>();
+
+const emit = defineEmits(['seeVocabDetail'])
 
 const searchResults = ref<Vocab[]>([]);
 const searchWord = ref("");
 const sortRule = ref("word");
+
 watch(
-  () => props.originalWordList,
+  () => props.originalVocabList,
   (newVal) => {
     if (newVal) {
-      searchResults.value = props.originalWordList;
+      searchResults.value = props.originalVocabList;
     }
   },
   { immediate: true } 
 )
 
-const emit = defineEmits(['seeVocabDetail'])
-
 const sortSearchResults = () => {
-  const priorityOrder: Record<string, number> = { ng: 0, normal: 1, good: 2 };
+
 
   searchResults.value.sort((a, b) => {
     if (sortRule.value === 'word') {
       return a.word.localeCompare(b.word);
-    } else if (sortRule.value === 'created_at') {
-      return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+    } else if (sortRule.value === 'createdAt') {
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
     } else if (sortRule.value === 'priority') {
-      return (priorityOrder[a.priority] || 0) - (priorityOrder[b.priority] || 0);
+      return a.priority.localeCompare(b.priority);
     }
     return 0;
   });
@@ -80,17 +82,17 @@ const seeVocabDetail = async (searchWord: string) => {
 };
 
 const updateResultList =  () => {
-    searchResults.value = props.originalWordList;
+    searchResults.value = props.originalVocabList;
     filterVocab();
     sortSearchResults();
 };
 
 const filterVocab = async () => {
   if (searchWord.value === "") {
-    searchResults.value = props.originalWordList;
+    searchResults.value = props.originalVocabList;
     return;
   }
-  searchResults.value = props.originalWordList.filter((vocab: Vocab) => {
+  searchResults.value = props.originalVocabList.filter((vocab: Vocab) => {
     return vocab.word.includes(searchWord.value);
   });
 }

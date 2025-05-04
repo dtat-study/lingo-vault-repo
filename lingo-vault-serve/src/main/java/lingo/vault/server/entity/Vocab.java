@@ -5,7 +5,6 @@ import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -13,14 +12,15 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "vocab")
-@IdClass(VocabId.class)
 public class Vocab {
 
     @Id
+    @Column(name = "vocab_id")
+    private String vocabId;
+
     @Column
     private String word;
-    
-    @Id
+
     @Column
     private String meaning;
 
@@ -30,29 +30,28 @@ public class Vocab {
     @Column
     private String example;
 
-    @Column
-    private Date created_at;
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     @Column
-    private Date updated_at;
-    
-    @Column
     private String priority;
-    
+
     @Column
     private int status;
 
     @Column
     private String classification;
-    
+
     @PrePersist
     public void prePersist() {
-        if (created_at == null) {
-            created_at = new Date();
+        if (createdAt == null) {
+            createdAt = new Date();
         }
-        if (updated_at == null) {
-            updated_at = new Date();
+        if (updatedAt == null) {
+            updatedAt = new Date();
         }
-    }
-    ;
+    };
 }
