@@ -12,7 +12,7 @@
     <groupId>lingo.vault</groupId>
     <artifactId>lingo-vault</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lingo-vault</name>
+    <name>lingo-vault-serve</name>
     <description>Demo project for Spring Boot</description>
     <url />
     <licenses>
