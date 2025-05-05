@@ -39,7 +39,7 @@
 
 <script lang="ts" setup>
 
-import { ref, onMounted, defineEmits, watch  } from 'vue';
+import { ref, defineEmits, watch  } from 'vue';
 import { Vocab } from '../dto/vocab/Vocab';
 
 const props = defineProps<{
@@ -63,8 +63,6 @@ watch(
 )
 
 const sortSearchResults = () => {
-
-
   searchResults.value.sort((a, b) => {
     if (sortRule.value === 'word') {
       return a.word.localeCompare(b.word);

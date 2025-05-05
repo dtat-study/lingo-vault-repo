@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -50,8 +51,18 @@ public class Vocab {
         if (createdAt == null) {
             createdAt = new Date();
         }
+        if (status == 0) {
+            status = 5;
+        }
+        if(level == null) {
+            level = "1";
+        }
+    }
+    
+    @PreUpdate
+    public void preUpdate() {
         if (updatedAt == null) {
             updatedAt = new Date();
         }
-    };
+    }
 }

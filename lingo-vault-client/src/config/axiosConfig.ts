@@ -1,7 +1,8 @@
 import axios from "axios";
 
+
 const axiosClient = axios.create({
-  baseURL: "http://localhost:443",
+  baseURL: process.env.LINGO_VAULT_API,
   headers: {
     "Content-Type": "application/json",
   },

@@ -1,4 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
+
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
@@ -8,6 +9,9 @@ module.exports = defineConfig({
     // Cấu hình sẽ được merge với cấu hình mặc định của Vue CLI
     plugins: [
       // Thêm plugins ở đây
+      new (require('webpack')).DefinePlugin({
+        'process.env.LINGO_VAULT_API': JSON.stringify(process.env.LINGO_VAULT_API)
+      })
     ],
     module: {
       rules: [

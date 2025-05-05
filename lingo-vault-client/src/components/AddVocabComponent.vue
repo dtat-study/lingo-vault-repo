@@ -1,14 +1,14 @@
 <template>
    <div class="col-2" >
         <label for="word" class="form-label">Word</label>
-        <input type="text" class="form-control" v-model="newVocab.word" id="word" @change="checkExistVocab()" :class="{ 'duplicated' : isExistVocabAndMeaning}">
+        <input type="text" class="form-control" v-model="newVocab.word" id="word" @keyup="checkExistVocab()" :class="{ 'duplicated' : isExistVocabAndMeaning}">
         <div :class="{'duplicated-message': isExistVocab && !isExistVocabAndMeaning}" style="display: none;">
             <button @click="seeVocabDetail"  class="btn btn-outline-warning border border-0 px-0">Exist this word - See detail</button>
         </div>
     </div>
     <div class="col-4">
         <label for="meaning" class="form-label">Meaning</label>
-        <input  type="text" class="form-control" v-model="newVocab.meaning" id="meaning" @change="checkExistVocab()" :class="{ 'duplicated' : isExistVocabAndMeaning}">
+        <input  type="text" class="form-control" v-model="newVocab.meaning" id="meaning" @keyup="checkExistVocab()" :class="{ 'duplicated' : isExistVocabAndMeaning}">
         <div :class="{'duplicated-error-message': isExistVocabAndMeaning}" style="display: none;">
             <button @click="seeVocabDetail" class="btn btn-outline-danger border border-0 px-0">Exist exactly the same word - See detail</button>
         </div>
@@ -24,8 +24,8 @@
     <div class="col-5">
         <div for="use" class="form-label">Type</div>
         <div class="form-check form-check-inline" v-for="classification in classifications">
-            <input class="form-check-input" type="radio" name="classification" :id="classification"
-            v-model="newVocab.classification" :value="classification">
+            <input class="form-check-input" type="checkbox" name="classification" :id="classification"
+            v-model="newVocabClassifications" :value="classification">
             <label class="form-check-label" :for=classification>{{ classification }} </label>
         </div>
     </div>
@@ -39,7 +39,7 @@
 
 import { Vocab } from '../dto/vocab/Vocab';
 import { ref } from 'vue';
-import axiosClient from "../config/axiosConfig";
+import *  as restApi from "../connect/restApi";
 
 const props = defineProps<{
   originalVocabList: Vocab[],
@@ -48,6 +48,7 @@ const props = defineProps<{
 const emit = defineEmits(['seeVocabDetail'])
 
 const classifications = ref(["n","v","adj"  ,"adv","prep","conj","pron","det","interj"]); 
+const newVocabClassifications = ref([]); 
 const newVocab = ref(new Vocab());
 const isExistVocab = ref(false);
 const isExistVocabAndMeaning = ref(false);
@@ -65,9 +66,24 @@ const checkExistVocab = () => {
 }
 
 const addNewVocab = async () => {
-    await axiosClient
-        .post('/addNewVocab' ,newVocab.value)
-        .then() // neead action check if true or false
+    if(isExistVocabAndMeaning.value === true) {
+        alert("This word and meaning already exist. Please check again.")
+        return;
+    }
+
+    newVocab.value.classification = "";
+    newVocabClassifications.value.forEach((classification: string) => {
+        newVocab.value.classification += classification + " ";
+    });
+    newVocab.value.classification = newVocab.value.classification.trim();
+
+    let result = await restApi.addNewVocabApi(newVocab.value);
+
+    if(result === true) {
+        alert("Add new vocab successfully.")
+    } else {
+        alert("Failed to add new vocab. Please check again.")
+    }
 }
 
 const seeVocabDetail = async () => {

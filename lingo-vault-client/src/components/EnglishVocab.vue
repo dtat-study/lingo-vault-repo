@@ -20,6 +20,8 @@ import { Vocab } from '../dto/vocab/Vocab';
 import AddVocabComponent from './AddVocabComponent.vue';
 import ListVocabComponent from './ListVocabComponent.vue';
 import VocabDetailComponent from './VocabDetailComponent.vue';
+import *  as restApi from "../connect/restApi";
+
 
 const originalVocabList =  ref<Vocab[]>([]);
 const detailVocabList =  ref<Vocab[]>([]);
@@ -28,18 +30,12 @@ const isDetail = ref<boolean>(false);
 const childRef = ref<InstanceType<typeof ListVocabComponent> | null>(null)
 
 onMounted(async () => {
-    await axiosClient
-        .post('/searchByWord',{word: ""})
-        .then(response => (originalVocabList.value = response.data));
-    
-        
+  originalVocabList.value = await restApi.searchVocabApi("");
 })
 
 socket.onmessage =async function() {
-  await axiosClient
-        .post('/searchByWord',{word: ""})
-        .then(response => (originalVocabList.value = response.data));
-        childRef.value?.updateResultList();
+  originalVocabList.value = await restApi.searchVocabApi("");
+  childRef.value?.updateResultList();
 };
 
 const toggleSearchStatus = () => {

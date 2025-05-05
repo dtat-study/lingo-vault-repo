@@ -9,7 +9,7 @@ body {
 
 .container-fluid {
   width: 1320px;
-  height: 95vh;
+  height: 655px;
   margin: 20px calc((100vw - 1320px) / 2);
   justify-content: space-evenly;
 }
@@ -23,12 +23,12 @@ body {
 }
 
 .add-vocab {
-  height: 25vh;
+  height: 200px;
   margin-bottom: 20px;
 }
 
 .list-vocab {
-  height: 65vh;
+  height: 500px;
 }
 
 .vocab-show-result {
@@ -39,7 +39,7 @@ body {
 .vocab-show-result ol {
   display: flex;
   flex-wrap: wrap;
-  max-height: 50vh;
+  max-height: 370px;
   overflow-y: auto;
   padding-left: 0px;
   padding-right: 10px;

@@ -1,6 +1,5 @@
 package lingo.vault.server.web.controller;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,19 +25,20 @@ public class VocabController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostMapping(value = "/checkExistWord", produces = "application/json")
-    public boolean checkExistWord(@RequestBody Map<String, String> request) throws SQLException {
-        return vocabService.checkExistWord(request.get("word"), request.get("meaning"));
-    }
-
     @PostMapping(value = "/addNewVocab", produces = "application/json")
-    public boolean addNewVocab(@RequestBody VocabRestDto newVocab) throws SQLException {
+    public boolean addNewVocab(@RequestBody VocabRestDto newVocab) {
         vocabService.addNewVocab(modelMapper.map(newVocab, Vocab.class));
+        return true;
+    }
+    @PostMapping(value = "/updateVocab", produces = "application/json")
+    public boolean updateVocab(@RequestBody List<VocabRestDto> updateList) {
+        vocabService.addNewVocab(modelMapper.map(updateList, new TypeToken<List<Vocab>>() {
+        }.getType()));
         return true;
     }
 
     @PostMapping(value = "/searchByWord", produces = "application/json")
-    public List<VocabRestDto> searchByWord(@RequestBody Map<String, String> request) throws SQLException {
+    public List<VocabRestDto> searchByWord(@RequestBody Map<String, String> request) {
         List<Vocab> vocabList = vocabService.searchByWord(request.get("word"));
         return modelMapper.map(vocabList, new TypeToken<List<VocabRestDto>>() {
         }.getType());
