@@ -3,7 +3,9 @@ package lingo.vault.server.web.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +26,7 @@ public class UserController {
     JwtUtils jwtUtils;
 
     @PostMapping(value = "/login", produces = "application/json")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> request) {
+    public ResponseEntity<Boolean> login(@RequestBody Map<String, String> request) {
 
         // Get username and pasword from client
         String username = request.get("username");
@@ -33,8 +35,15 @@ public class UserController {
         boolean isLegalUser = appUserService.login(username, password);
         if(isLegalUser) {
             String jwtToken = jwtUtils.generateToken(username);
-            return new ResponseEntity<String>(jwtToken, HttpStatusCode.valueOf(200));
-        } else {
+            ResponseCookie cookie = ResponseCookie.from("token",jwtToken).httpOnly(true)
+                    .secure(true) // Only access by https
+                    .sameSite("None") //Nếu là Strict, chỉ gửi khi request cùng origin
+                    .path("/")
+                    .maxAge(100)
+                    .build();
+            ResponseEntity<Boolean> response = ResponseEntity.ok().header(HttpHeaders.COOKIE, cookie.toString()).body(isLegalUser);
+           return response;
+            } else {
             return new ResponseEntity<>(HttpStatusCode.valueOf(204));
         }
     }
