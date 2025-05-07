@@ -11,7 +11,7 @@ const axiosClient = axios.create({
 // Request Interceptor: Gắn token vào Header
 axiosClient.interceptors.request.use(
   (config) => {
-
+    console.log(axiosClient.defaults.baseURL);
     config.withCredentials = true;
     return config;
   },
