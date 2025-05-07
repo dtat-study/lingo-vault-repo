@@ -12,7 +12,6 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   (config) => {
     console.log(axiosClient.defaults.baseURL);
-    config.withCredentials = true;
     return config;
   },
   (error) => Promise.reject(error)
