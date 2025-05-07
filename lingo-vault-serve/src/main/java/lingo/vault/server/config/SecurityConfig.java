@@ -38,7 +38,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("*")); // FE domain
+        config.setAllowedOrigins(List.of("https://lingolingo.vercel.app")); // FE domain
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type","Access-Control-Allow-Origin"));
         config.setAllowCredentials(true); // cho phép dùng cookie, authorization
