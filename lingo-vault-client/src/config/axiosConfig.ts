@@ -11,6 +11,11 @@ const axiosClient = axios.create({
 // Request Interceptor: Gắn token vào Header
 axiosClient.interceptors.request.use(
   (config) => {
+    const token = localStorage.getItem('jwt-token');
+    
+    if(token && config.url !== '/login') {
+      config.headers.Authorization = `Bearer ${token}`; 
+    }
     return config;
   },
   (error) => Promise.reject(error)

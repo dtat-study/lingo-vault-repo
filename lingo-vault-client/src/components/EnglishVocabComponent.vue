@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid row">
+  <div class="english-container row">
     <div class="col-12 add-vocab row justify-content-start">
       <AddVocabComponent :originalVocabList="originalVocabList" @seeVocabDetail="handleSeeVocabDetail" ></AddVocabComponent>
     </div>
@@ -14,7 +14,6 @@
 <script lang="ts" setup>
 
 import { ref, onMounted, onBeforeMount } from 'vue';
-import axiosClient from "../config/axiosConfig";
 
 import { Vocab } from '../dto/vocab/Vocab';
 import AddVocabComponent from './AddVocabComponent.vue';

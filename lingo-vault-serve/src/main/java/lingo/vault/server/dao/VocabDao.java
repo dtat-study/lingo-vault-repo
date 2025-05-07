@@ -1,10 +1,11 @@
-package lingo.vault.server.service;
+package lingo.vault.server.dao;
 
 import java.util.List;
 
 import lingo.vault.server.entity.Vocab;
 
-public interface VocabService {
+public interface VocabDao {
+
     public boolean addNewVocab(Vocab newVocab);
 
     public boolean updateVocabList(List<Vocab> updateList);

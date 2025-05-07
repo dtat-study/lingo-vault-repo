@@ -2,6 +2,15 @@ import { Vocab } from '../dto/vocab/Vocab';
 import axiosClient from "../config/axiosConfig";
 import * as LingoVaultPath  from '../constant/LingoVaultPath';
 
+export async function login(payload: any): Promise<any> {
+    return  await axiosClient
+         .post(LingoVaultPath.LOGIN ,{
+            "username": payload.username,
+            "password": payload.password
+         })
+         .then(response =>  response.data) 
+ }
+
 export async function addNewVocabApi(newVocab: Vocab): Promise<any> {
    return  await axiosClient
         .post(LingoVaultPath.ADD_NEW_VOCAB ,newVocab)

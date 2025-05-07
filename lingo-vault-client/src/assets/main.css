@@ -1,17 +1,89 @@
+:root {
+  --background-gradient: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+  --background-gradient-2:linear-gradient(to top, #083ca3 0%, #8da3cd 100%, #6b8cce 100%, #a2b6df 100%);
+  --background-blue-1: #69a0fe;
+  --background-blue-2: #6db7fd;
+  --background-dark-blue: #051d9a ;
+  --background-white: #ffffff;
+}
 html {
   font-size: 14px;
 }
 
-body {
-  background-color: #eaf3f7;
-  overflow: hidden;
+body, #app {
+  height: 100vh;
+  background-image: var(--background-gradient);
+  overflow-y: hidden;
 }
 
-.container-fluid {
-  width: 1320px;
+.logo {
+  line-height: 1.5;
+  font-family: "Lavishly Yours", cursive;
+  font-weight: 700;
+  font-size: 4.5rem;
+  background: var(--background-gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}
+.logo-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--background-blue-1);
+  text-underline-offset: 5px;
+  text-decoration-style: double; 
+  text-decoration-thickness: 1px; 
+}
+/* overall */
+
+#outside-container {
+  height: 100%;
+  width: 1520px;
+  margin: 0 auto;
+
+}
+
+#sidebar-component{
+border-right: solid 1px #ccc;
+}
+
+/* LoginComponent */
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 20px 20px 10px rgba(78, 121, 239, 0.2);
+}
+
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* EnglishVocabComponentComponent */
+.english-container {
+  background-color: var(--background-white);
+  /* width: 1320px;
   height: 655px;
   margin: 20px calc((100vw - 1320px) / 2);
-  justify-content: space-evenly;
+  justify-content: space-evenly; */
 }
 
 .container-fluid > div {
