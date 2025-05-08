@@ -2,6 +2,7 @@ package lingo.vault.server.config;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +19,9 @@ import lingo.vault.server.filter.JwtRequestFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    @Value("${LINGO_CLIENT_DOMAIN}")
+    private String lingoClientDomain;
 
     //Setting security config
     // 1. Disable CSRF vì dùng JWT
@@ -38,7 +42,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("https://lingolingo.vercel.app")); // FE domain
+        config.setAllowedOrigins(List.of(lingoClientDomain)); // FE domain
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type","Access-Control-Allow-Origin"));
         config.setAllowCredentials(true); // cho phép dùng cookie, authorization
