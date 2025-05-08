@@ -6,7 +6,6 @@ import java.util.Map;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +15,6 @@ import lingo.vault.server.service.VocabService;
 import lingo.vault.server.web.controller.dto.VocabRestDto;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class VocabController {
 
     @Autowired
@@ -30,6 +28,7 @@ public class VocabController {
         vocabService.addNewVocab(modelMapper.map(newVocab, Vocab.class));
         return true;
     }
+
     @PostMapping(value = "/updateVocab", produces = "application/json")
     public boolean updateVocab(@RequestBody List<VocabRestDto> updateList) {
         vocabService.addNewVocab(modelMapper.map(updateList, new TypeToken<List<Vocab>>() {
@@ -43,6 +42,5 @@ public class VocabController {
         return modelMapper.map(vocabList, new TypeToken<List<VocabRestDto>>() {
         }.getType());
     }
-   
-    
+
 }
