@@ -36,7 +36,7 @@ public class UserController {
             ResponseCookie cookie = ResponseCookie.from("token", jwtToken).httpOnly(true).secure(true) // Only access by
                                                                                                        // https
                     .sameSite("None") // Nếu là Strict, chỉ gửi khi request cùng origin
-                    .path("/").maxAge(100).build();
+                    .path("/").maxAge(1000000).build();
             ResponseEntity<Boolean> response = ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
                     .body(isLegalUser);
             return response;

@@ -1,8 +1,8 @@
 <template>
   <div class="vocab-show">
     <div class="vocab-show-option">
-      <div class="text-center">Choose the word you want to show!</div>
-      <div class="row">
+      <div class="text-center mb-3 ">Choose the word you want to show!</div>
+      <div class="row justify-content-between">
         <div class="col-6">
           <select class="form-select" @change="sortSearchResults()" v-model="sortRule">
             <option value="word">Alphabet</option>
@@ -11,9 +11,9 @@
           </select>
         </div>
         <div class="col-6">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search..." v-model="searchWord" @keyup="filterVocab()">
-            <button class="btn btn-outline-secondary" type="button" @click="filterVocab()">Search</button>
+          <div class="input-group mb-3 row">
+            <input type="text" class="form-control col-10" placeholder="Search..." v-model="searchWord" @keyup="filterVocab()">
+            <button class="btn btn-outline-secondary col-2" type="button" @click="filterVocab()">Search</button>
           </div>
         </div>
       </div>

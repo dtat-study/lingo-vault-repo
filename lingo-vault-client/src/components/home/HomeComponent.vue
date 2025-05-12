@@ -1,15 +1,15 @@
 <template>
     <div id="outside-container" class="row">
-      <div id="sidebar-component" class="col-1">
+      <div id="sidebar-component" class=" row justify-content-between flex-column">
         <SidebarComponent />
       </div>
-      <div id="english-component" class="col-11">
-        <EnglishVocabComponent/>
+      <div id="language-component">
+        <LanguageVocabComponent/>
       </div>
     </div>
   </template>
   <script lang="ts" setup>
-  import SidebarComponent from './components/sidebar/SidebarComponent.vue';
-  import EnglishVocabComponent from './components/EnglishVocabComponent.vue';
+  import SidebarComponent from '../sidebar/SidebarComponent.vue';
+  import LanguageVocabComponent from '../LanguageVocabComponent.vue';
   
   </script>

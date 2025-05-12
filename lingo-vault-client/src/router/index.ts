@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import EnglishVocabComponent from '../components/EnglishVocabComponent.vue'
+import LanguageVocabComponent from '../components/LanguageVocabComponent.vue'
+import HomeComponent from '../components/home/HomeComponent.vue'
 import  LoginComponent from '../components/login/LoginComponent.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: EnglishVocabComponent,
+    component: HomeComponent,
   },
   {
     path: '/login',

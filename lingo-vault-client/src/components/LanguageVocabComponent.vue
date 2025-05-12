@@ -1,12 +1,11 @@
 <template>
-  <div class="english-container row">
-    <div class="col-12 add-vocab row justify-content-start">
+  <div class="language-container">
+    <div class=" add-vocab row justify-content-start">
       <AddVocabComponent :originalVocabList="originalVocabList" @seeVocabDetail="handleSeeVocabDetail" ></AddVocabComponent>
     </div>
-    <div class="col-12 list-vocab">
+    <div class=" list-vocab">
       <ListVocabComponent  ref="childRef" @seeVocabDetail="handleSeeVocabDetail" :originalVocabList="originalVocabList" ></ListVocabComponent>
     </div>
-
   </div>
   <VocabDetailComponent :detailVocabList="detailVocabList" v-if="isDetail" @toggle-search-status="toggleSearchStatus"></VocabDetailComponent>
 </template>
