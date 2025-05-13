@@ -1,0 +1,66 @@
+<configuration>
+
+	<!-- Định nghĩa pattern cho log -->
+	<property name="INFO_PATTERN"
+		value="[LINGO LINGO] [%d{yyyy-MM-dd HH:mm:ss.SSS}] %msg%n" />
+	<property name="ERROR_PATTERN"
+		value="[LINGO ERROR] [%d{yyyy-MM-dd HH:mm:ss.SSS}] %msg%n%throwable" />
+	<property name="QUERY"
+		value="Query: %msg%n" />
+
+	<logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+		<appender-ref ref="QueryConsole" />
+	</logger>
+	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" additivity="false">
+		<appender-ref ref="QueryConsole" />
+	</logger>
+
+	<appender name="QueryConsole" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${QUERY}</pattern> <!-- Định dạng cho log ERROR,
+			thêm throwable -->
+		</encoder>
+	</appender>
+	
+	<!-- Appender cho INFO log -->
+	<appender name="InfoConsole" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${INFO_PATTERN}</pattern> <!-- Định dạng cho log INFO -->
+		</encoder>
+	</appender>
+
+	<!--    <appender name="InfoFile" class="ch.qos.logback.core.FileAppender">
+        <file>logs/info.log</file>  Ghi log vào file info.log 
+        <encoder>
+            <pattern>${INFO_PATTERN}</pattern>  Định dạng cho log INFO 
+        </encoder>
+    </appender>-->
+
+	<!-- Appender cho ERROR log -->
+	<appender name="ErrorConsole" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${ERROR_PATTERN}</pattern> <!-- Định dạng cho log ERROR,
+			thêm throwable -->
+		</encoder>
+	</appender>
+
+	<!--    <appender name="ErrorFile" class="ch.qos.logback.core.FileAppender">
+        <file>logs/error.log</file>  Ghi log vào file error.log 
+        <encoder>
+            <pattern>${ERROR_PATTERN}</pattern>  Định dạng cho log ERROR 
+        </encoder>
+    </appender>-->
+
+	<!-- Root logger, ghi INFO log ra console và file info.log -->
+	<root level="INFO">
+		<appender-ref ref="InfoConsole" />
+		<!-- <appender-ref ref="InfoFile"/>-->
+	</root>
+
+	<!-- Logger cho ERROR log, ghi ERROR log ra console và file error.log -->
+	<logger name="com.example.demo" level="ERROR">
+		<appender-ref ref="ErrorConsole" />
+		<!--<appender-ref ref="ErrorFile"/>-->
+	</logger>
+
+</configuration>

@@ -8,10 +8,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import lingo.vault.server.annotation.Loggable;
 import lingo.vault.server.dao.AppUserDao;
 import lingo.vault.server.service.AppUserService;
 
 @Service
+@Loggable
 public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     @Autowired
