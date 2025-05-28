@@ -36,10 +36,8 @@ const router = useRouter();
 
 const handleLogin = async () => {
     // Mock login logic
-    let jwrtoken:string = await restApi.login({"username":username.value, "password":password.value});
-    localStorage.setItem("jwt-token", jwrtoken);
-    if (jwrtoken) {
-        // Redirect to the home page after successful login
+    let isValidUser : boolean = await restApi.login({"username":username.value, "password":password.value});
+    if (isValidUser) {
         router.push("/");
     } else {
         errorMessage.value = "Invalid username or password. Please try again.";

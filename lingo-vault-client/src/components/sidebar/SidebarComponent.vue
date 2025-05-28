@@ -15,10 +15,9 @@
 </template>
 <script lang="ts" setup>
 
-import { Vocab } from '../../dto/vocab/Vocab';
-import { ref } from 'vue';
 import { LogOut } from 'lucide-vue-next'
+import *  as restApi from "../../connect/restApi";
 
-const languageList = ref(["English","Korean"]); 
+const languageList = await restApi.getLanguageList();
 
 </script>

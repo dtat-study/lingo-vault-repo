@@ -4,12 +4,12 @@
         <SidebarComponent />
       </div>
       <div id="language-component">
-        <LanguageVocabComponent/>
+        <VocabComponent/>
       </div>
     </div>
   </template>
   <script lang="ts" setup>
   import SidebarComponent from '../sidebar/SidebarComponent.vue';
-  import LanguageVocabComponent from '../LanguageVocabComponent.vue';
+  import VocabComponent from '../vocab/VocabComponent.vue';
   
   </script>

@@ -52,6 +52,10 @@ public class Vocab {
     @ManyToOne
     private AppUser appUser;
 
+    @JoinColumn(name = "lang")
+    @ManyToOne
+    private Languages languages;
+    
     @PrePersist
     public void prePersist() {
         if (createdAt == null) {

@@ -14,11 +14,11 @@
 
 import { ref, onMounted, onBeforeMount } from 'vue';
 
-import { Vocab } from '../dto/vocab/Vocab';
+import { Vocab } from '../../dto/vocab/Vocab';
 import AddVocabComponent from './AddVocabComponent.vue';
 import ListVocabComponent from './ListVocabComponent.vue';
 import VocabDetailComponent from './VocabDetailComponent.vue';
-import *  as restApi from "../connect/restApi";
+import *  as restApi from "../../connect/restApi";
 
 
 const originalVocabList =  ref<Vocab[]>([]);

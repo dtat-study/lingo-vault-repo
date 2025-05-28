@@ -1,9 +1,11 @@
 package lingo.vault.server.web.controller;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +39,9 @@ public class UserController {
                                                                                                        // https
                     .sameSite("None") // Nếu là Strict, chỉ gửi khi request cùng origin
                     .path("/").maxAge(1000000).build();
-            ResponseEntity<Boolean> response = ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
-                    .body(isLegalUser);
-            return response;
+            return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(isLegalUser);
         } else {
-            return new ResponseEntity<>(HttpStatusCode.valueOf(204));
+            return ResponseEntity.ok().body(isLegalUser);
         }
     }
 }

@@ -28,3 +28,10 @@ export async function searchVocabApi(word: string): Promise<any> {
         .post(LingoVaultPath.SEARCH_VOCAB ,{"word": word})
         .then(response =>  response.data) 
 }
+
+
+export async function getLanguageList(): Promise<any> {
+    return  await axiosClient
+        .post(LingoVaultPath.GET_LANGUAGE_LIST )
+        .then(response =>  response.data) 
+}

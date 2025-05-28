@@ -40,7 +40,7 @@
 <script lang="ts" setup>
 
 import { ref, defineEmits, watch  } from 'vue';
-import { Vocab } from '../dto/vocab/Vocab';
+import { Vocab } from '../../dto/vocab/Vocab';
 
 const props = defineProps<{
   originalVocabList: Vocab[],

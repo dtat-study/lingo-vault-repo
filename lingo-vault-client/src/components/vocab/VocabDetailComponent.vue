@@ -37,11 +37,11 @@
 
 <script lang="ts" setup>
 
-import axiosClient from "../config/axiosConfig";
+import axiosClient from "../../config/axiosConfig";
 import { ref, defineEmits } from 'vue';
 
-import { Vocab } from '../dto/vocab/Vocab';
-import *  as restApi from "../connect/restApi";
+import { Vocab } from '../../dto/vocab/Vocab';
+import *  as restApi from "../../connect/restApi";
 
 const props = defineProps<{
   detailVocabList: Vocab[]

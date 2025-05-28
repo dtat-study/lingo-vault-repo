@@ -37,9 +37,9 @@
 
 <script lang="ts" setup>
 
-import { Vocab } from '../dto/vocab/Vocab';
+import { Vocab } from '../../dto/vocab/Vocab';
 import { ref } from 'vue';
-import *  as restApi from "../connect/restApi";
+import *  as restApi from "../../connect/restApi";
 
 const props = defineProps<{
   originalVocabList: Vocab[],

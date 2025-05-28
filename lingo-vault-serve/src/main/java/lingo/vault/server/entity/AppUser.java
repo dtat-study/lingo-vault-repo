@@ -45,7 +45,6 @@ public class AppUser implements UserDetails {
     @Column(name = "updated_at")
     private String updatedAt;
     
-    @Column
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Vocab> vocabList;
 

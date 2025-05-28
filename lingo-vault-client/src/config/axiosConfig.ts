@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const axiosClient = axios.create({
   baseURL: process.env.LINGO_VAULT_API,
   headers: {
@@ -11,7 +10,6 @@ const axiosClient = axios.create({
 // Request Interceptor: Gắn token vào Header
 axiosClient.interceptors.request.use(
   (config) => {
-    console.log(axiosClient.defaults.baseURL);
     config.withCredentials = true;
     return config;
   },
@@ -20,9 +18,16 @@ axiosClient.interceptors.request.use(
 
 // Response Interceptor: Xử lý lỗi chung
 axiosClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    return response;
+  },
   (error) => {
     if (error.response) {
+      if (error.response.status === 500) {
+        window.location.href = "/error";
+      } else if (error.response.status === 403) {
+        window.location.href = "/login";
+      }
     }
     return Promise.reject(error);
   }
